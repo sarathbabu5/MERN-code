@@ -174,3 +174,10 @@ if(sum1,sum2>five){
 else{
   console.log('No');
 }
+
+
+let a=100;
+let b=50;
+if(a>b){
+	console.log("hi i am fine");
+}
