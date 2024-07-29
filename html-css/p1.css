@@ -1,0 +1,14 @@
+#section1 {
+  display: flex;
+  border: 5px thin white;
+}
+div {
+  padding: 20px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-align: left;
+  box-shadow: 5px black;
+}
+img {
+  width: 300px;
+  height: 300px;
+}

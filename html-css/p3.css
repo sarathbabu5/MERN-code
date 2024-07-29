@@ -1,0 +1,22 @@
+.section1 {
+  display: flex;
+  margin: 5px;
+  padding-right: 20px;
+}
+.section2 {
+  display: flex;
+  padding-right: 100px;
+}
+div {
+  padding: 2px;
+  text-align: center;
+  margin: 5px;
+}
+img {
+  width: 400px;
+  height: 400px;
+}
+button {
+  color: black;
+  background-color: #81d4fa;
+}

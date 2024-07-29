@@ -2,10 +2,85 @@
 <html lang="en">
   <head>
     <title>Registration Form</title>
+    <link
+      rel="icon"
+      href="data:image/png;base64,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"
+    />
   </head>
   <body>
+    <h2>Registration Form</h2>
     <form>
-      <div></div>
+      <div>
+        <label for="name">Full name</label>
+        <input type="text" name="name" />
+      </div>
+      <br />
+
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" required />
+      </div>
+      <br />
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" required maxlength="20" />
+      </div>
+      <br />
+      <div>
+        <label for="cpassword">Confirm password</label>
+        <input type="password" name="cpassword" required maxlength="20" />
+      </div>
+      <br />
+      <div>
+        <label for="bod">Birthdate</label>
+        <input type="date" name="bod" required min="2006-01-01" />
+      </div>
+      <br />
+      <div>
+        <label for="gender">Gender</label>
+        <select name="gender" id="">
+          <option value="">Select your gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <br />
+      <div>
+        <label for="Subscription">Subscription:</label>
+        <br />
+        <input type="radio" name="Subscription" />
+        <label for="free">Free</label>
+        <input type="radio" name="Subscription" />
+        <label for="basic">Basic</label>
+        <input type="radio" name="Subscription" />
+        <label for="premium">Premium</label>
+      </div>
+      <br />
+      <div>
+        <label for="hobbies">Hobbies:</label>
+        <br />
+        <input type="checkbox" name="hobbies" />
+        <label for="reading">Reading</label>
+        <br />
+        <input type="checkbox" name="hobbies" />
+        <label for="Traveling">Traveling</label>
+        <br />
+        <input type="checkbox" name="hobbies" />
+        <label for="Coding">Coding</label>
+        <br />
+        <input type="checkbox" name="hobbies" />
+        <label for="Sports">Sports</label>
+      </div>
+      <br />
+      <div>
+        <label for="photo">Profile picture</label>
+        <input type="file" name="photo" accept=".jpg,.png" required />
+      </div>
+      <br />
+      <div>
+        <button type="submit">submit</button>
+      </div>
     </form>
   </body>
 </html>
