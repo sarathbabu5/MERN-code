@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  let num1 = document.createElement("input");
+  num1.setAttribute("type", "number");
+  num1.setAttribute("placeholder", "Enter number1");
+  let num2 = document.createElement("input");
+  num2.setAttribute("type", "number");
+  num2.setAttribute("placeholder", "Enter number2");
+  let p = document.createElement("p");
+  p.innerText = "output";
+  let btn = document.createElement("button");
+  btn.setAttribute("id", "btn");
+  btn.textContent = "Click here to find the exponent!";
+  let body = document.querySelector("body");
+  body.append(num1, num2, btn, p);
+  btn.addEventListener("click", button);
+  let out = num1 + "*" + num2;
+  function button() {
+    alert(num1.value + "*" + num2.value);
+    let bag = 1;
+    for (let i = 1; i <= num2.value; i++) {
+      bag = bag * num1.value;
+    }
+    return (p.innerText = bag);
+  }
+</script>
