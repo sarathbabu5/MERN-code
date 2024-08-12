@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaderboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .container {
+        margin: 20px auto;
+        width: 300px;
+      }
+      .buttons {
+        margin-bottom: 20px;
+      }
+      .buttons button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        margin: 5px;
+      }
+      .score-box {
+        font-size: 24px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+      .min-max {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="score-box" id="scoreBox"></div>
+      <div class="buttons">
+        <button data-number="1">1</button>
+        <button data-number="2">2</button>
+        <button data-number="3">3</button>
+        <button data-number="4">4</button>
+        <button data-number="5">5</button>
+        <button data-number="6">6</button>
+        <button data-number="7">7</button>
+        <button data-number="8">8</button>
+        <button data-number="9">9</button>
+        <button data-number="0">0</button>
+        <button id="enterBtn">ENTER</button>
+      </div>
+      <div class="min-max">
+        MIN: <span id="minScore">N/A</span><br />
+        MAX: <span id="maxScore">N/A</span>
+      </div>
+    </div>
+
+    <script>
+      let currentScore = "";
+      let minScore = Infinity;
+      let maxScore = -Infinity;
+
+      // Function to update the score box with the current score
+      function updateScoreBox() {
+        document.getElementById("scoreBox").innerText = currentScore;
+      }
+
+      // Function to handle adding digits to the score
+      function addToScore(num) {
+        currentScore += num;
+        updateScoreBox();
+      }
+
+      // Function to handle submitting the score
+      function submitScore() {
+        if (currentScore === "") return;
+
+        let score = parseInt(currentScore, 10);
+
+        if (isNaN(score)) return;
+
+        if (score < minScore) {
+          minScore = score;
+          document.getElementById("minScore").innerText = score;
+        }
+        if (score > maxScore) {
+          maxScore = score;
+          document.getElementById("maxScore").innerText = score;
+        }
+
+        currentScore = "";
+        updateScoreBox();
+      }
+
+      // Event listeners for number buttons
+      document
+        .querySelectorAll(".buttons button[data-number]")
+        .forEach((button) => {
+          button.addEventListener("click", (e) => {
+            addToScore(e.target.getAttribute("data-number"));
+          });
+        });
+
+      // Event listener for the ENTER button
+      document
+        .getElementById("enterBtn")
+        .addEventListener("click", submitScore);
+    </script>
+  </body>
+</html>

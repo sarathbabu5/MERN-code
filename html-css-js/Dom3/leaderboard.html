@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 500px;
+        margin: auto;
+        margin-top: 30px;
+      }
+      body #top {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        /* background-color: orange; */
+      }
+
+      #box {
+        justify-content: center;
+
+        text-align: center;
+      }
+      #box > div {
+        /* display: flex; */
+        margin: auto;
+        justify-content: center;
+      }
+      #min > input {
+        background-color: red;
+      }
+      #max > input {
+        background-color: green;
+      }
+      #display {
+        width: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        padding: 20px;
+        background-color: gray;
+      }
+      #key {
+        display: grid;
+        grid-template-columns: repeat(3, 50px);
+        grid-template-rows: repeat(4, 50px);
+        gap: 20px;
+        text-align: center;
+      }
+      #key > div:nth-child(even) {
+        background-color: orangered;
+      }
+      #key > div:nth-child(odd) {
+        background-color: greenyellow;
+      }
+      #key > div:last-child {
+        background-color: blueviolet;
+        display: flex;
+        grid-column: 2/3;
+      }
+      #key > div:nth-child(5) {
+        background-color: orangered;
+      }
+      #submit {
+        background-color: black;
+        color: white;
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="top1">
+      <div id="top">
+        <div>
+          <input type="number" id="min" value="99999" />
+          Min
+        </div>
+        <div>
+          <input type="number" id="max" value="0" />
+          Max
+        </div>
+      </div>
+      <div id="box">
+        <label>SCORE</label>
+        <div id="display"></div>
+        <div id="key">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div>7</div>
+          <div>8</div>
+          <div>9</div>
+          <div>0</div>
+        </div>
+        <div><button id="submit">ENTER</button></div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  let bag = "";
+  let enterNumber = document.querySelectorAll("#key div");
+  enterNumber.forEach((ele) => {
+    ele.addEventListener("click", display);
+  });
+  function display() {
+    bag = bag + event.target.innerText;
+    document.querySelector("#display").textContent = bag;
+  }
+  document.querySelector("#submit").addEventListener("click", enter);
+  function enter() {
+    let min = document.querySelector("#min").value;
+    let max = document.querySelector("#max").value;
+    if (bag < min) {
+      // min = bag;
+      document.querySelector("#min").value = bag;
+    }
+    if (bag > max) {
+      // max = bag;
+      document.querySelector("#max").value = bag;
+    }
+
+    bag = "";
+
+    document.querySelector("#display").textContent = bag;
+  }
+</script>
