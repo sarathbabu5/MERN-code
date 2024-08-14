@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bozaz Products</title>
+    <style>
+      body {
+        padding: 20px;
+      }
+      #addProduct {
+        padding: 20px;
+        width: 80%;
+        margin: auto;
+        text-align: center;
+      }
+      input,
+      label {
+        padding: 1px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border-collapse: collapse;
+        border-color: lightseagreen;
+      }
+      label {
+        font-size: 18px;
+      }
+      form {
+        border: 1px solid lightseagreen;
+        border-radius: 10px;
+        padding: 20px;
+        width: 40%;
+        margin: auto;
+      }
+      #submit {
+        background-color: lightskyblue;
+        cursor: pointer;
+        padding: 5px;
+        font-size: 16px;
+      }
+      #submit:hover {
+        background-color: aqua;
+        font-style: italic;
+      }
+      select {
+        margin: 10px;
+        padding: 2px;
+        border-radius: 10px;
+        font-size: 14px;
+      }
+      #cards {
+        border: 1px solid black;
+        width: 700px;
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <nav>
+      <a href="./Bozaz.html">Home</a>
+      <a href="./cart.html">cart</a>
+    </nav> -->
+    <div id="addProduct">
+      <h1>Add Products</h1>
+      <form id="form">
+        <select name="" id="product">
+          <option value="">Product Category</option>
+          <option value="electronics">Electronics</option>
+          <option value="furniture">Furniture</option>
+          <option value="home">Home</option>
+          <option value="appliance">Appliance</option>
+          <option value="books">Books</option></select
+        ><br />
+        <label>Product Title</label>
+        <input type="text" name="" id="title" />
+        <br />
+        <label>Product description</label>
+        <input type="text" id="des" />
+        <br />
+        <label>Product price</label>
+        <input type="number" id="price" />
+        <br />
+        <input type="submit" id="submit" />
+      </form>
+    </div>
+
+    <div id="cards"></div>
+  </body>
+</html>
+<script>
+  document.querySelector("#form").addEventListener("submit", productSubmit);
+
+  // let cart = [];
+
+  // if (localStorage.getItem("productDetails") !== null) {
+  //   cart = JSON.parse(localStorage.getItem("productDetails"));
+  // } else {
+  //   cart = [];
+  // }
+
+  function productSubmit() {
+    event.preventDefault();
+
+    let productCategory = document.querySelector("#product").value;
+    let productTitle = document.querySelector("#title").value;
+    let = productDescription = document.querySelector("#des").value;
+    let = productPrice = document.querySelector("#price").value;
+
+    // cart.push(obj);
+    // localStorage.setItem("productDetails", JSON.stringify(cart));
+    // window.location.href = "cart.html";
+    // cards(cart);
+
+    // cart = [];
+
+    let div = document.createElement("div");
+    let h2 = document.createElement("h2");
+    h2.innerText = productCategory;
+    let p1 = document.createElement("P");
+    p1.innerText = productTitle;
+    let p2 = document.createElement("p");
+    p2.innerText = productDescription;
+    let p3 = document.createElement("p");
+    p3.innerText = productPrice;
+    let btn = document.createElement("button");
+    btn.innerText = "Delete";
+
+    btn.addEventListener("click", deleteItem);
+    // deleteItem(element, index);
+
+    div.append(h2, p1, p2, p3, btn);
+    document.querySelector("#cards").append(div);
+    document.querySelector("#form").reset();
+    // localStorage.setItem("productDetails", JSON.stringify(cart));
+  }
+
+  function deleteItem(event) {
+    // let card = event.target.parentElement;
+    event.target.parentElement.remove();
+    // cards(cart);
+    // localStorage.setItem("productDetails", JSON.stringify(cart));
+    // window.location.reload();
+  }
+  // function deleteItem(event) {
+  //   const button = event.target;
+  //   const card = button.parentElement;
+  //   card.remove();
+  // }
+</script>
