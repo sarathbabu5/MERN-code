@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products</title>
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      body {
+        padding: 20px;
+      }
+      #addProduct {
+        padding: 20px;
+        width: 80%;
+        margin: auto;
+        text-align: center;
+      }
+      input,
+      label {
+        padding: 1px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border-collapse: collapse;
+        border-color: lightseagreen;
+      }
+      label {
+        font-size: 18px;
+      }
+      form {
+        border: 1px solid lightseagreen;
+        border-radius: 10px;
+        padding: 20px;
+        width: 40%;
+        margin: auto;
+      }
+      #submit {
+        background-color: lightskyblue;
+        cursor: pointer;
+        padding: 5px;
+        font-size: 16px;
+      }
+      #submit:hover {
+        background-color: aqua;
+        font-style: italic;
+      }
+      select {
+        margin: 10px;
+        padding: 2px;
+        border-radius: 10px;
+        font-size: 14px;
+      }
+      #cards {
+        box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+          25px 0 20px -20px rgba(0, 0, 0, 0.45),
+          0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+          -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+        border-radius: 10px;
+        width: 700px;
+        display: flex;
+        margin: auto;
+        padding: 10px;
+        gap: 10px;
+      }
+      #cards > div {
+        padding: 10px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        border-radius: 10px;
+      }
+      #Title {
+        font-size: 20px;
+        text-transform: uppercase;
+      }
+      p {
+        text-transform: capitalize;
+      }
+      a > button {
+        font-size: 20px;
+        border-radius: 50px;
+        background-color: lightsalmon;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <nav>
+      <a href="./Bozaz.html">Home</a>
+      <a href="./cart.html">cart</a>
+    </nav> -->
+    <nav id="narbar">
+      <a href="./index.html">Home</a>
+      <ul>
+        <a href="./signup.html">Signup</a>
+        <a href="./login.html">Login</a>
+        <a href="./addProducts.html">Mens</a>
+        <a href="./addProducts.html">Women's</a>
+      </ul>
+    </nav>
+    <div id="addProduct">
+      <h1>Add Products</h1>
+      <form id="form">
+        <select name="" id="product">
+          <option value="">Product Category</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Furniture">Furniture</option>
+          <option value="Home">Home</option>
+          <option value="Appliance">Appliance</option>
+          <option value="Books">Books</option></select
+        ><br />
+        <label>Product Title</label>
+        <input type="text" name="" id="title" />
+        <br />
+        <label>Product description</label>
+        <input type="text" id="des" />
+        <br />
+        <label>Product price</label>
+        <input type="number" id="price" />
+        <br />
+        <input type="submit" id="submit" />
+      </form>
+    </div>
+    <span
+      ><a href="cart.html"><button>Cart</button></a></span
+    >
+    <div id="cards"></div>
+  </body>
+</html>
+<script>
+  let array = JSON.parse(localStorage.getItem("productDetails")) || [];
+  let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+  document.querySelector("#form").addEventListener("submit", data);
+  function data() {
+    event.preventDefault();
+    let obj = {
+      productCategory: form.product.value,
+      productTitle: form.title.value,
+      productDescription: form.des.value,
+      productPrice: form.price.value,
+    };
+    array.push(obj);
+    localStorage.setItem("productDetails", JSON.stringify(array));
+    document.querySelector("#form").reset();
+    window.location.reload();
+  }
+  details(array);
+  function details(data) {
+    data.forEach((element, index) => {
+      let div = document.createElement("div");
+      let h2 = document.createElement("h2");
+      h2.textContent = element.productCategory;
+      let p1 = document.createElement("p");
+      p1.id = "Title";
+      p1.textContent = element.productTitle;
+      let p2 = document.createElement("p");
+      p2.textContent = element.productDescription;
+      let p3 = document.createElement("p");
+      p3.textContent = "$" + element.productPrice;
+      let btn1 = document.createElement("button");
+      btn1.textContent = "Add to cart";
+      btn1.addEventListener("click", () => {
+        addToCart(element);
+      });
+      let br = document.createElement("br");
+      let btn = document.createElement("button");
+      btn.textContent = "Delete";
+      btn.addEventListener("click", function () {
+        // deleteItem(index);
+        array.splice(index, 1);
+
+        localStorage.setItem("productDetails", JSON.stringify(array));
+        window.location.reload();
+      });
+
+      div.append(h2, p1, p2, p3, btn1, br, btn);
+      document.querySelector("#cards").append(div);
+    });
+  }
+  function addToCart(data) {
+    let value = false;
+    cart.forEach((element) => {
+      if (element.productTitle === data.productTitle) {
+        value = true;
+      }
+    });
+    if (value) {
+      alert("Product already in cart!");
+    } else {
+      cart.push(data);
+      localStorage.setItem("cartItems", JSON.stringify(cart));
+      // alert("Product added to cart!");
+    }
+  }
+  // document.querySelector("button").addEventListener("click", goToCart);
+
+  // function deleteItem(index) {
+  //   array.splice(index, 1);
+  //   // data.remove("productDetails");
+  //   localStorage.setItem("productDetails", JSON.stringify(array));
+  //   window.location.reload();
+  // }
+</script>

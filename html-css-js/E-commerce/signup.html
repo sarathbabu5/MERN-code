@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      main {
+        border: 1px solid black;
+        width: 50%;
+        text-align: center;
+        margin: auto;
+        margin-top: 50px;
+        padding: 10px;
+      }
+      div {
+        padding-top: 15px;
+      }
+      span > input {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="narbar">
+      <a href="./index.html">Home</a>
+      <ul>
+        <a href="./signup.html">Signup</a>
+        <a href="./login.html">Login</a>
+        <a href="./addProducts.html">Mens</a>
+        <a href="./addProducts.html">Women's</a>
+      </ul>
+    </nav>
+    <form id="signup">
+      <main>
+        <div>
+          <label for="firstName"> First Name: </label>
+          <input type="text" placeholder="Enter first name" id="firstName" />
+        </div>
+        <div>
+          <label for="lastName">Last Name:</label>
+          <input type="text" placeholder="Enter last name" id="lastName" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" placeholder="Enter Email" id="email" />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" placeholder="Enter Password" id="password" />
+        </div>
+        <span id="span"><input type="submit" /></span>
+      </main>
+    </form>
+  </body>
+</html>
+<script>
+  document.querySelector("#signup").addEventListener("submit", addDetails);
+  let array = JSON.parse(localStorage.getItem("userDetails")) || [];
+
+  function addDetails() {
+    event.preventDefault();
+
+    let obj = {
+      firstName: signup.firstName.value,
+      lastName: signup.lastName.value,
+      email: signup.email.value,
+      password: signup.password.value,
+    };
+    let value = false;
+    array.forEach((element) => {
+      if (element.email == obj.email) {
+        value = true;
+      }
+    });
+
+    if (value) {
+      alert("email already exits!");
+    } else {
+      array.push(obj);
+      localStorage.setItem("userDetails", JSON.stringify(array));
+      document.querySelector("#signup").reset();
+      alert("Signup Completed");
+    }
+  }
+</script>

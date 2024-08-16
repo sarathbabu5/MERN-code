@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      main {
+        border: 1px solid black;
+        width: 500px;
+        margin: auto;
+        margin-top: 30px;
+        text-align: center;
+      }
+      div {
+        margin-top: 10px;
+      }
+      span input {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="narbar">
+      <a href="./index.html">Home</a>
+      <ul>
+        <a href="./signup.html">Signup</a>
+        <a href="./login.html">Login</a>
+        <a href="./addProducts.html">Mens</a>
+        <a href="./addProducts.html">Women's</a>
+      </ul>
+    </nav>
+    <form id="form">
+      <main>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" placeholder="Enter email" id="email" />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" placeholder="Enter password" id="password" />
+        </div>
+        <span><input type="submit" /></span>
+      </main>
+    </form>
+  </body>
+</html>
+<script>
+  let signup = JSON.parse(localStorage.getItem("userDetails"));
+
+  document.querySelector("#form").addEventListener("submit", checkDetails);
+
+  function checkDetails() {
+    event.preventDefault();
+    let obj = {
+      email: form.email.value,
+      password: form.password.value,
+    };
+    // login.push(obj);
+    let value = false;
+    signup.forEach((element) => {
+      if (element.email === obj.email && element.password === obj.password) {
+        value = true;
+      }
+    });
+    if (value) {
+      window.location.href = "addProducts.html";
+    } else {
+      alert("Email and password are wrong");
+    }
+  }
+</script>

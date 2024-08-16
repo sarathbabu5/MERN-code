@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      #items {
+        display: flex;
+        gap: 30px;
+      }
+      #items > div {
+        border: 1px solid black;
+
+        margin-top: 20px;
+        padding-left: 10px;
+      }
+      input {
+        width: 15%;
+      }
+      span {
+        /* width: 10%; */
+        height: 20px;
+        /* border: 1px solid black; */
+        margin: 10px;
+        margin-top: 10px;
+        padding: 5px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="narbar">
+      <a href="./index.html">Home</a>
+      <ul>
+        <a href="./signup.html">Signup</a>
+        <a href="./login.html">Login</a>
+        <a href="./addProducts.html">Mens</a>
+        <a href="./addProducts.html">Women's</a>
+      </ul>
+    </nav>
+    <div id="items"></div>
+    <div style="position: fixed; top: 50px; right: 10px">
+      <h3 id="totalItems">Total Items:0</h3>
+      <h3 id="totalPrice">Total Price:$0</h3>
+    </div>
+    <div style="margin-top: 20px">
+      <input type="text" id="promo" />
+      <button id="apply">Apply Promo</button>
+    </div>
+  </body>
+</html>
+<script>
+  let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+  let totalItems = 0;
+  let totalPrice = 0;
+  //   console.log(cartDetails);
+  //   let cartDetails = JSON.parse(localStorage.getItem("cartDetails")) || [];
+  cartItems(cart);
+  function cartItems(data) {
+    data.forEach((element, index) => {
+      if (!element.quantity) {
+        element.quantity = "1";
+      }
+      totalItems += element.quantity * 1;
+      totalPrice += element.productPrice * element.quantity;
+      let div = document.createElement("div");
+      let h3 = document.createElement("h3");
+      h3.textContent = element.productCategory;
+      let title = document.createElement("h4");
+      title.textContent = element.productTitle;
+      let qut = document.createElement("label");
+      qut.textContent = "Quantity";
+      let decreasequt = document.createElement("span");
+      decreasequt.textContent = "-";
+      decreasequt.addEventListener("click", function () {
+        if (qut1.value > 1) {
+          qut1.value--;
+          updatePrice();
+        }
+      });
+
+      let increasequt = document.createElement("span");
+      increasequt.textContent = "+";
+      increasequt.addEventListener("click", function () {
+        qut1.value++;
+        updatePrice();
+      });
+
+      function updatePrice() {
+        let newPrice = element.productPrice * qut1.value;
+        price.textContent = "$" + newPrice;
+        cart[index].quantity = qut1.value;
+        localStorage.setItem("cartItems", JSON.stringify(cart));
+        window.location.reload();
+      }
+      let br = document.createElement("br");
+      let qut1 = document.createElement("input");
+      // qut1.type = "number";
+      qut1.value = element.quantity;
+      let btn = document.createElement("button");
+      btn.textContent = "Delete";
+      btn.addEventListener("click", function () {
+        // deleteItem(index);
+        cart.splice(index, 1);
+
+        localStorage.setItem("cartItems", JSON.stringify(cart));
+        window.location.reload();
+      });
+      let price = document.createElement("h3");
+      price.textContent = "$" + element.productPrice * qut1.value;
+
+      div.append(
+        h3,
+        title,
+        qut,
+        br,
+        decreasequt,
+        qut1,
+        increasequt,
+        price,
+        btn
+      );
+      document.querySelector("#items").append(div);
+    });
+
+    document.getElementById("totalItems").textContent =
+      "TotalItems:" + totalItems;
+    document.getElementById("totalPrice").textContent =
+      "Total Price:$" + totalPrice;
+  }
+  function applyPromoCode() {
+    let promoCode = document.getElementById("promo").value;
+    if (promoCode === "flm30") {
+      let discount = totalPrice * 0.3;
+      totalPrice -= discount;
+      alert("promoCode applied!");
+      document.getElementById("totalPrice").textContent =
+        "Total Price: $" + totalPrice;
+    } else {
+      alert("Invalid promo code");
+    }
+  }
+
+  document.getElementById("apply").addEventListener("click", applyPromoCode);
+</script>
