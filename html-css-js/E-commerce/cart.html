@@ -30,6 +30,32 @@
         padding-bottom: 0px;
         font-size: 18px;
       }
+      h4 {
+        text-transform: capitalize;
+      }
+      #main > button {
+        background-color: red;
+        margin-bottom: 5px;
+        border-collapse: collapse;
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+          0 15px 12px rgba(0, 0, 0, 0.22);
+      }
+      #main > button:hover {
+        cursor: pointer;
+        background-color: orangered;
+      }
+      #pay:hover {
+        background-color: lightseagreen;
+        cursor: pointer;
+      }
+      #card {
+        /* border: 1px solid black; */
+        padding: 10px;
+      }
+      #card > input,
+      label {
+        margin-top: 10px;
+      }
     </style>
   </head>
   <body>
@@ -51,6 +77,23 @@
       <input type="text" id="promo" />
       <button id="apply">Apply Promo</button>
     </div>
+    <form id="form">
+      <div style="margin-top: 20px">
+        <div id="card">
+          <label for="cardNumber">Card Number</label>
+          <input type="number" id="cardNumber" />
+          <br />
+          <label>CVV</label>
+          <input type="number" id="cvv" /><br />
+          <label>Expiry Date</label>
+          <input type="date" id="date" min="2024-05-01" /><br />
+          <label>Name</label>
+          <input type="text" />
+        </div>
+        <!-- <button id="pay">Payment</button> -->
+        <input type="submit" id="pay" />
+      </div>
+    </form>
   </body>
 </html>
 <script>
@@ -68,6 +111,7 @@
       totalItems += element.quantity * 1;
       totalPrice += element.productPrice * element.quantity;
       let div = document.createElement("div");
+      div.id = "main";
       let h3 = document.createElement("h3");
       h3.textContent = element.productCategory;
       let title = document.createElement("h4");
@@ -132,6 +176,9 @@
     document.getElementById("totalPrice").textContent =
       "Total Price:$" + totalPrice;
   }
+
+  document.getElementById("apply").addEventListener("click", applyPromoCode);
+
   function applyPromoCode() {
     let promoCode = document.getElementById("promo").value;
     if (promoCode === "flm30") {
@@ -145,5 +192,19 @@
     }
   }
 
-  document.getElementById("apply").addEventListener("click", applyPromoCode);
+  document.querySelector("#form").addEventListener("submit", payment);
+
+  function payment() {
+    let card = document.getElementById("cardNumber").value;
+    // console.log(card);
+    let cvv = document.getElementById("cvv").value;
+    let date = document.getElementById("date").value;
+    if (card == "123456" && cvv == "555") {
+      console.log("hi");
+      //   window.location.href = "otp.html";
+    } else {
+      alert("CardNumber and CVV details are wrong!");
+      //   document.getElementById("form").reset();
+    }
+  }
 </script>
