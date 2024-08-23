@@ -16,5 +16,23 @@
         <a href="./addProducts.html">Women's</a>
       </ul>
     </nav>
+    <div style="margin-top: 50px">
+      <label>OTP:</label>
+      <input type="number" id="otp" placeholder="Enter your OTP" />
+      <input type="submit" id="submit" onclick="otp()" />
+    </div>
   </body>
 </html>
+<script>
+  let input = document.querySelector("#otp");
+  // document.querySelector("#submit").addEventListener("submit", otp);
+  function otp() {
+    if (input.value == "123") {
+      alert("Payment Successful!");
+      input.value = "";
+    } else {
+      alert("Payment failed!");
+      input.value = "";
+    }
+  }
+</script>

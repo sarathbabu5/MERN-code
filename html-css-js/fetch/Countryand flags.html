@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        /* border: 1px solid black; */
+        /* padding: 5px; */
+        gap: 5px;
+        width: 100%;
+      }
+      #container > div {
+        /* border: 1px solid black; */
+        width: 1fr;
+        height: 350px;
+        padding: 10px;
+      }
+      img {
+        width: 200px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+  </body>
+</html>
+<script>
+  async function dataFetching() {
+    try {
+      let response = await fetch("https://restcountries.com/v3.1/all");
+      let data = await response.json(); //promise ---> convert json data into object.
+
+      //   console.log(data); // array
+
+      //dom
+      let container = document.querySelector("#container");
+      data.map(function (element) {
+        let div = document.createElement("div");
+        let h3 = document.createElement("h3");
+        h3.textContent = element.name.common;
+        let image = document.createElement("img");
+        image.src = element.flags.png;
+        let p = document.createElement("p");
+        p.innerText = "Population:" + " " + element.population;
+        let p1 = document.createElement("P");
+        p1.textContent = "Region:" + " " + element.region;
+        let p2 = document.createElement("P");
+        p2.textContent = "Capital:" + " " + element.capital;
+        div.append(h3, image, p, p1, p2);
+        container.append(div);
+      });
+    } catch (error) {
+      alert(error);
+      console.log(error);
+    }
+  }
+  dataFetching();
+</script>

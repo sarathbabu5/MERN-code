@@ -195,16 +195,17 @@
   document.querySelector("#form").addEventListener("submit", payment);
 
   function payment() {
+    event.preventDefault();
     let card = document.getElementById("cardNumber").value;
     // console.log(card);
     let cvv = document.getElementById("cvv").value;
     let date = document.getElementById("date").value;
-    if (card == "123456" && cvv == "555") {
-      console.log("hi");
-      //   window.location.href = "otp.html";
+    if (card == "123" && cvv == "555") {
+      // console.log(card);
+      window.location.href = "otp.html";
     } else {
       alert("CardNumber and CVV details are wrong!");
-      //   document.getElementById("form").reset();
+      document.getElementById("form").reset();
     }
   }
 </script>
