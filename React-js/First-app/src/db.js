@@ -1,4 +1,4 @@
-const Data = [
+export const data = [
   {
     id: 1,
     avatar: "http://dummyimage.com/200x200.jpg/5fa2dd/ffffff",
@@ -550,5 +550,3 @@ const Data = [
     is_following: true,
   },
 ];
-
-export default Data;

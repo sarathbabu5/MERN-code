@@ -1,9 +1,13 @@
 import UserDetails from "./UserDetails";
-import data from "./db";
+import { data } from "./db";
 function App() {
+  let userdata = [...data];
+  const onToggleFollow = () => {
+    // user.is_following = !user.is_following;
+  };
   return (
     <>
-      <UserDetails data={data} />
+      <UserDetails userData={data} onToggleFollow={onToggleFollow} />
     </>
   );
 }

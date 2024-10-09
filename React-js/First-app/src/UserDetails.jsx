@@ -1,10 +1,13 @@
 import React from "react";
 
-const UserDetails = ({ data }) => {
+const UserDetails = (props) => {
+  const { userData, onToggleFollow } = props;
+
   return (
     <section>
-      {data.map((item) => {
+      {userData.map((item) => {
         const {
+          id,
           first_name,
           last_name,
           address,
@@ -16,12 +19,15 @@ const UserDetails = ({ data }) => {
         } = item;
         return (
           <div
+            key={id}
             style={{
               border: "1px solid #ccc",
               borderRadius: "8px",
               padding: "16px",
               margin: "16px",
               textAlign: "center",
+              display: "flex",
+              gap: "20px",
             }}
           >
             <img
@@ -35,9 +41,9 @@ const UserDetails = ({ data }) => {
             <p>Karma: {karma}</p>
             <p>Followers: {followers}</p>
             <p>Posts: {posts}</p>
-            {/* <button onClick={onToggleFollow}>
+            <button onClick={onToggleFollow(item)}>
               {is_following ? "Unfollow" : "Follow"}
-            </button> */}
+            </button>
           </div>
         );
       })}
