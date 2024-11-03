@@ -1,8 +1,13 @@
-# React + Vite
+Routing
+---> react -router -dom.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. browserROuter --> we need to wrap this component over app.jsx.
+2. we need to create routes 1. <Routes>
+   <Route path="/" element=<homePage/>>
+   <Routes/>
 
-Currently, two official plugins are available:
+NavLink ---> to redirect from one page to another page.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+//homework
+Error page
+Londing page
