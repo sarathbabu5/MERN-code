@@ -176,21 +176,37 @@
 
 ### Html-Css-Js
 
-1. Dom
-   1. Methods
-      - getElementById().
-      - getElementByClass().
-      - getElementByTagName().
-      - querySelector().
-      - querySelectorAll().
-      - createElement().
-      - setAttribute().
-      - append().
-      - eval().
-      - addEventListener().
-      - preventDefault().
-   2. Events
-      - click.
-      - mouse enter.
-      - mouse leave.
-      - dblclick.
+1.  Dom-Methods
+    - getElementById().
+    - getElementByClass().
+    - getElementByTagName().
+    - querySelector().
+    - querySelectorAll().
+    - createElement().
+    - setAttribute().
+    - append().
+    - eval().
+    - addEventListener().
+    - preventDefault().
+2.  Events
+    - click.
+    - mouse enter.
+    - mouse leave.
+    - dblclick.
+    - change
+
+### React-js
+
+1. Main dom
+2. Vritual dom
+3. Babel
+4. Hooks
+5. useState.
+6. useRef.
+7. useEffect.
+8. useContext / Context api.
+9. useNavigate.
+10. useReducer.
+11. React router dom.
+12. TanStack.
+13. Axios.
