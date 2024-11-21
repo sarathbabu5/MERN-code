@@ -8,6 +8,7 @@ const intialState = {
 };
 export const AppProvider = ({ children }) => {
   const [authState, setAuthState] = useState(intialState);
+  const [isLoading, setIsLoading] = useState(false);
   console.log(authState);
   const loginUser = (userDetails) => {
     setAuthState({
@@ -22,6 +23,12 @@ export const AppProvider = ({ children }) => {
       userDetails: null,
     });
   };
+  const loadingTrue = () => {
+    setIsLoading(true);
+  };
+  const loadingFalse = () => {
+    setIsLoading(false);
+  };
   // const providerState = {
   //   authState,
   //   loginUser,
@@ -29,7 +36,9 @@ export const AppProvider = ({ children }) => {
   // };
 
   return (
-    <AppContext.Provider value={{ authState, loginUser, logoutUser }}>
+    <AppContext.Provider
+      value={{ authState, loginUser, logoutUser, loadingFalse, loadingTrue }}
+    >
       {children}
     </AppContext.Provider>
   );

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loading from "../components/Loading";
+import AppContext from "../context/AuthContext";
 
 const ProductDetailsPage = () => {
   const param = useParams();
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { authState, loadingTrue, loadingFalse } = useContext(AppContext);
 
   //   useEffect(() => {
   //     axios
@@ -23,10 +24,9 @@ const ProductDetailsPage = () => {
       );
       //   let data = await response.json();
       console.log(response);
-      setLoading(false);
+
       setProduct(response.data);
     } catch (error) {
-      setLoading(false);
       console.log(error);
     }
   }
@@ -35,21 +35,19 @@ const ProductDetailsPage = () => {
     fetchingData(param);
   }, []);
   console.log(product);
-  if (loading) return <Loading />;
+  if (authState.isLoading) return <Loading />;
   if (!product) return <div>Product not found</div>;
 
   return (
-    <div>
+    <div className="product-details">
       <h2>{product.title}</h2>
-      <p>{product.category}</p>
-      <p>Price: {product.price}</p>
-      <p>Location: {product.location}</p>
-      <p>Seller: {product.seller.name}</p>
-      <p>Email: {product.seller.email}</p>
+      <p className="category">{product.category}</p>
+      <p className="price">Price: {product.price}</p>
+      <p className="location">Location: {product.location}</p>
+      <p className="seller">Seller: {product.seller?.name}</p>
+      <p className="email">Email: {product.seller?.email}</p>
       <div className="images">
-        {product.images.map((img, index) => (
-          <img key={index} src={img} alt={`Product Image ${index + 1}`} />
-        ))}
+        <img src={product.images} alt={product.title} />
       </div>
     </div>
   );
