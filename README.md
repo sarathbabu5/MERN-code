@@ -210,3 +210,5 @@
 11. React router dom.
 12. TanStack.
 13. Axios.
+14. Redux.
+15. Redux Toolkit.
